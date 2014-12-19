@@ -1,5 +1,5 @@
 var videoApp = angular.module('videoApp', ['videoAppFilters', 'ui.unique', 'angularUtils.directives.dirPagination']);
-videoApp.controller('VideoListCtrl', function ($scope, $http, $filter, cacheLoader, $rootScope) {
+videoApp.controller('VideoCtrl', function ($scope, $http, $filter, cacheLoader, $rootScope) {
 
 	$scope.setPageSize = function (pageSize) {
 		$scope.pageSize = pageSize;
