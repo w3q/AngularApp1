@@ -1,0 +1,15 @@
+<ul class="paginator" ng-if="1 < pages.length">
+
+    <li ng-if="directionLinks" >
+        <a href="" class="previous text-bold text-white" ng-class="{ notAllowed : pagination.current == 1 }" ng-click="setCurrent(pagination.current - 1)">Previous</a>
+    </li>
+
+    <li ng-repeat="pageNumber in pages track by $index">
+        <a href="" ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }" class="page text-bold" ng-click="setCurrent(pageNumber)">{{ pageNumber }}</a>
+    </li>
+
+    <li ng-if="directionLinks">
+        <a href="" class="next text-bold text-white" ng-class="{ notAllowed : pagination.current == pagination.last }" ng-click="setCurrent(pagination.current + 1)">Next</a>
+    </li>
+
+</ul>

@@ -1,0 +1,63 @@
+<!doctype html>
+<html class="no-js" lang="" ng-app="videoApp">
+    <head>
+        <meta charset="utf-8">
+        <title>Latest videos</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Cache-Control" content="public">
+        <link rel="stylesheet" href="css/normalize.css">
+        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/libraries/bootstrap.min.css">
+    </head>
+    <body ng-controller="VideoListCtrl">
+        <header class="col-lg-12 col-md-12 col-sm-12 text-white">
+            LATEST VIDEOS
+            <span><select class="favorite-selector" ng-model="selected"">
+                <option value="{{category}}" ng-repeat="category in categories">{{category}}</option>
+            </select> <button class="btn-danger" ng-click="addFavorite(selected, 'category')">Add to favorite</button></span>
+            <span class="results">
+                <select class="resultsSelector" ng-model="selected" ng-change="setPageSize(selected)">
+                    <option value="4">4</option>
+                    <option value="8">8</option>
+                    <option value="12">12</option>
+                </select>
+            </span>
+        </header>
+        <main>
+            <div class="category-list">
+                <li><a href="#" class="categories-filter" ng-click="filterArticles('all')">All videos</a></li>
+                <li ng-repeat="category in categories"><a href="#" ng-click="filterArticles(category)" class="categories-filter">&nbsp;{{category}}</a></li>
+            </div>
+            <div class="video-container" id="video-container">
+                <article class='col-lg-3 col-md-4 col-sm-12 col-xs-12 video' ng-click="addSelectedClass($event)" dir-paginate="video in videos | unique | itemsPerPage: pageSize">
+                    <div class='video-image'><img class='img-responsive img' src='img/{{video.image ? video.image : "1" }}.jpeg'>
+                        <img class='player img-responsive' src='img/icon.png' width='75px' height='75px'>
+                    </div>
+                    <p class='video-title'><strong>{{video.title}}</strong></p>
+                    <p class='video-timestamp'>{{video.timestamp | dateFilter}}</p>
+                    <span class='categories'>
+                        <li ng-repeat="category in video.categories | unique">{{category}}&nbsp;</li>
+                    </span>
+                </article>
+            </div>
+            <div class="col-lg-offset-2 col-lg-8">
+                    <dir-pagination-controls></dir-pagination-controls>
+            </div>
+        </main>
+        <script src="js/angular/angular.js"></script>
+        <script src="js/libraries/jquery.min.js"></script>
+        <script src="js/angular/ui-utils.js"></script>
+        <script src="js/libraries/underscore.js"></script>
+
+
+    <script src="js/controllers/VideoListCtrl.js"></script>
+    <script src="js/filters/CategoryFilter.js"></script>
+    <script src="js/filters/ArticleFilter.js"></script>
+    <script src="js/filters/DateFilter.js"></script>
+    <script src="js/angular/dirPagination.js"></script>
+    <script src="js/services/CacheLoaderService.js"></script>
+    </body>
+</html>
+
