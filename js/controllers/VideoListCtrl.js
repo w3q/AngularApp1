@@ -12,6 +12,7 @@ videoApp.controller('VideoCtrl', function ($scope, $http, $filter, cacheLoader, 
 		return alert(key + " "+ data + " was added to your favorite list.");
 	};
 
+  //Toto je funkcia na pridanie Selected classy pre html elementy
 	$scope.addSelectedClass = function (event) {
 		if($(event.target).hasClass("selected") == true)
 		{
@@ -21,6 +22,10 @@ videoApp.controller('VideoCtrl', function ($scope, $http, $filter, cacheLoader, 
 			$(event.target).addClass("selected");
 		}
 	};
+  
+  function BlaBla() {
+    console.log("bla");
+  }
 
 	$scope.filterArticles = function (category) {
 		$scope.videos = $filter('articleFilter')(category, $scope.allData);
